@@ -1,0 +1,55 @@
+version: "3.8"
+volumes:
+  php-fpm-socket:
+  db-store:
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./infra/docker/php/Dockerfile
+    volumes:
+      - type: volume
+        source: php-fpm-socket
+        target: /var/run/php-fpm
+        volume:
+          nocopy: true
+      - type: bind
+        source: ./src
+        target: /work/src
+
+  web:
+    build:
+      context: .
+      dockerfile: ./infra/docker/nginx/Dockerfile
+    ports:
+      - target: 80
+        published: ${WEB_PORT:-80}
+        protocol: tcp
+        mode: host
+    volumes:
+      - type: volume
+        source: php-fpm-socket
+        target: /var/run/php-fpm
+        volume:
+          nocopy: true
+      - type: bind
+        source: ./src
+        target: /work/src
+  db:
+    build:
+      context: .
+      dockerfile: ./infra/docker/mysql/Dockerfile
+    ports:
+      - target: 3306
+        published: ${DB_PORT:-3306}
+        protocol: tcp
+        mode: host
+    volumes:
+      - type: volume
+        source: db-store
+        target: /var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=laravel_local
+      - MYSQL_USER=phper
+      - MYSQL_PASSWORD=secret
+      - MYSQL_ROOT_PASSWORD=secret
