@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
@@ -8,7 +8,8 @@ class ComponentTestController extends Controller
 {
     public function showComponent1()
     {
-        return view('tests.component-test1');
+        $message = 'メッセージ';
+        return view('tests.component-test1', compact('message'));
     }
 
     public function showComponent2()
