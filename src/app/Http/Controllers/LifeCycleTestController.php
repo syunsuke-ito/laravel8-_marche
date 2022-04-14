@@ -6,11 +6,19 @@ use Illuminate\Http\Request;
 
 class LifeCycleTestController extends Controller
 {
+
+
+    public function showServiceProviderTest()
+    {
+        $encrvpt = app()->make('encrypter');
+        $password = $encrvpt->encrypt('password');
+
+        $sample = app()->make('serviceProviderTest');
+        dd($sample, $password, $encrvpt->decrypt($password));
+    }
     public function showServiceContainerTest()
     {
-        app()->bind('lifeCycleTest', function(){
-            return 'ライフサイクルテスト';
-        });
+
         $test = app()->make('lifeCycleTest');
 
         //サービスコンテナなしのパターン
@@ -25,6 +33,7 @@ class LifeCycleTestController extends Controller
 
         dd($test, app());
     }
+
 }
 
 class Sample
