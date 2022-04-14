@@ -3,5 +3,7 @@
         ヘッダー２
     </x-slot>
     test2
-    <x-tests.card title="タイトル" content="本文" />
+    <x-test-class-base classBaseMessage="メッセージです" />
+    <div class="mb-4"></div>
+    <x-test-class-base classBaseMessage="メッセージです" defaultMessage="初期値から変更"/>
 </x-tests.app>
