@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Http\Controllers\Admin;
 
@@ -13,9 +15,23 @@ use Illuminate\Validation\Rules;
 use Throwable;
 use Illuminate\Support\Facades\Log;
 
+/**
+ * @copyright 2022 ito
+ *
+ * ecサイト:ownersコントローラー
+ *
+ * @create 2022/04 ecサイト
+ * [更新履歴]
+ *
+ */
+
 
 class OwnersController extends Controller
 {
+    /**
+     * OwnersController constructor.
+     *
+     */
     public function __construct()
     {
         $this->middleware('auth:admin');
@@ -73,13 +89,13 @@ class OwnersController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        try{
-            DB::transaction(function() use($request){
+        try {
+            DB::transaction(function () use ($request) {
                 $owner = Owner::create([
-                            'name' => $request->name,
-                            'email' => $request->email,
-                            'password' => Hash::make($request->password)
-                        ]);
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->password)
+                ]);
 
                 Shop::create([
                     'owner_id' => $owner->id,
@@ -89,17 +105,17 @@ class OwnersController extends Controller
                     'is_selling' => true
                 ]);
             }, 2);
-        }catch(Throwable $e){
+        } catch (Throwable $e) {
             Log::error($e);
             throw $e;
         }
 
         return redirect()
-        ->route('admin.owners.index')
-        ->with([
-            'message' => 'オーナー登録を実施しました。',
-            'status' => 'info'
-        ]);
+            ->route('admin.owners.index')
+            ->with([
+                'message' => 'オーナー登録を実施しました。',
+                'status' => 'info'
+            ]);
     }
 
     /**
@@ -142,11 +158,11 @@ class OwnersController extends Controller
         $owner->save();
 
         return redirect()
-        ->route('admin.owners.index')
-        ->with([
-            'message' => 'オーナー情報を更新しました。',
-            'status' => 'info'
-        ]);
+            ->route('admin.owners.index')
+            ->with([
+                'message' => 'オーナー情報を更新しました。',
+                'status' => 'info'
+            ]);
     }
 
     /**
@@ -160,11 +176,11 @@ class OwnersController extends Controller
         Owner::findOrFail($id)->delete();
 
         return redirect()
-        ->route('admin.owners.index')
-        ->with([
-            'message' => 'オーナー情報を削除しました。',
-            'status' => 'alert'
-        ]);
+            ->route('admin.owners.index')
+            ->with([
+                'message' => 'オーナー情報を削除しました。',
+                'status' => 'alert'
+            ]);
     }
 
     public function expiredOwnerIndex()
