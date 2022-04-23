@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Shop;
 use Illuminate\Support\Facades\Storage;
 use InterventionImage;
+use App\Http\Requests\UploadImageRequest;
 
 /**
  * @copyright 2022 ito
@@ -78,11 +79,11 @@ class ShopController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param \App\Http\Requests\UploadImageRequest $request
      * @param int $id
      * @return \Illuminate\Routing\Redirector
      */
-    public function update(Request $request, $id)
+    public function update(UploadImageRequest $request, $id)
     {
         $imageFile = $request->image;
         if (null !== $imageFile && $imageFile->isValid()) {
