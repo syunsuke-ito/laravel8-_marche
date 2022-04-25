@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Http\Requests;
 
@@ -25,13 +27,14 @@ class UploadImageRequest extends FormRequest
     {
         return [
             'image' => 'image|mimes:jpg,jpeg,png|max:2048',
+            'files.*.image' => 'required|image|mimes:jpg,jpeg,png|max:2048'
         ];
     }
 
     public function message()
     {
         return [
-            'image' =>'指定されたファイルが画像ではありません。',
+            'image' => '指定されたファイルが画像ではありません。',
             'mimes' => '指定された拡張子(jpg/jpeg/png)ではありません。',
             'max' => 'ファイルサイズは2MB以内にしてください。'
         ];
