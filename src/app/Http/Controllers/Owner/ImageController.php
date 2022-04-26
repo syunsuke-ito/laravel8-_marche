@@ -25,7 +25,9 @@ use Illuminate\Support\Facades\Storage;
 class ImageController extends Controller
 {
     /**
-     * ShopController constructor.
+     * ImageController constructor.
+     *
+     * @return void
      *
      */
     public function __construct()

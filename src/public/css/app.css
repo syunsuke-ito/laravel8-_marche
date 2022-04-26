@@ -666,6 +666,10 @@ select {
   margin-top: 1px;
   margin-bottom: 1px;
 }
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
 .my-3 {
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
@@ -684,6 +688,9 @@ select {
 }
 .mt-4 {
   margin-top: 1rem;
+}
+.mt-32 {
+  margin-top: 8rem;
 }
 .mb-12 {
   margin-bottom: 3rem;
