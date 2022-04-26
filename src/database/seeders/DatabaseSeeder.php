@@ -1,9 +1,20 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
+/**
+ * @copyright 2022 ito
+ *
+ * ecサイト:seeder
+ *
+ * @create 2022/04 ecサイト
+ * [更新履歴]
+ *
+ */
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -17,7 +28,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AdminSeeder::class,
             OwnerSeeder::class,
-            ShopSeeder::class
+            ShopSeeder::class,
+            ImageSeeder::class
         ]);
     }
 }

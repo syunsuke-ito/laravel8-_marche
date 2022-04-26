@@ -1,10 +1,21 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * @copyright 2022 ito
+ *
+ * ecサイト:shopダミーデータ作成
+ *
+ * @create 2022/04 ecサイト
+ * [更新履歴]
+ *
+ */
 
 class ShopSeeder extends Seeder
 {
