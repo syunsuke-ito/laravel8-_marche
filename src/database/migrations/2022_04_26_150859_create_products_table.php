@@ -7,13 +7,13 @@ use Illuminate\Support\Facades\Schema;
 /**
  * @copyright 2022 ito
  *
- * ecサイト:ShopTable マイグレーションファイル
+ * ecサイト:ProductsTable マイグレーションファイル
  *
  * @create 2022/04 ecサイト
  * [更新履歴]
  *
  */
-class CreateShopsTable extends Migration
+class CreateProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -22,16 +22,17 @@ class CreateShopsTable extends Migration
      */
     public function up()
     {
-        Schema::create('shops', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('owner_id')
+            $table->foreignId('shop_id')
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->string('name');
-            $table->text('information');
-            $table->string('filename');
-            $table->boolean('is_selling');
+            $table->foreignId('secondary_category_id')
+                ->constrained();
+            $table->foreignId('image1')
+                ->nullable()
+                ->constrained('images');
             $table->timestamps();
         });
     }
@@ -43,6 +44,6 @@ class CreateShopsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shops');
+        Schema::dropIfExists('products');
     }
 }
