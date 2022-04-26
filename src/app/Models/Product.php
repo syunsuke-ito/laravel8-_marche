@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Models;
 
@@ -7,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Shop;
 use App\Models\SecondaryCategory;
 use App\Models\Image;
+use App\Models\Stock;
 
 /**
  * @copyright 2022 ito
@@ -49,5 +52,15 @@ class Product extends Model
     public function imageFirst()
     {
         return $this->belongsTo(Image::class, 'image1', 'id');
+    }
+
+    /**
+     * リレーションの定義
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     *
+     */
+    public function stock()
+    {
+        return $this->hasMany(Stock::class);
     }
 }
