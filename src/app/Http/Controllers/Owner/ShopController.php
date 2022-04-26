@@ -82,7 +82,7 @@ class ShopController extends Controller
      *
      * @param \App\Http\Requests\UploadImageRequest $request
      * @param int $id
-     * @return \Illuminate\Routing\Redirector
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UploadImageRequest $request, $id)
     {

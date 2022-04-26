@@ -6,6 +6,7 @@ namespace App\Services;
 
 use Illuminate\Support\Facades\Storage;
 use InterventionImage;
+use function is_array;
 
 /**
  * @copyright 2022 ito
