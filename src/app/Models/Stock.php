@@ -20,5 +20,21 @@ class Stock extends Model
 {
     use HasFactory;
 
+    /**
+     * テーブル設定.
+     *
+     * @var string
+     */
     protected $table = 't_stocks';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'product_id',
+        'type',
+        'quantity'
+    ];
 }
