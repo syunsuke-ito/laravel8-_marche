@@ -72,6 +72,33 @@ class Product extends Model
     {
         return $this->belongsTo(Image::class, 'image1', 'id');
     }
+    /**
+     * リレーションの定義
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     *
+     */
+    public function imageSecond()
+    {
+        return $this->belongsTo(Image::class, 'image2', 'id');
+    }
+    /**
+     * リレーションの定義
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     *
+     */
+    public function imageThird()
+    {
+        return $this->belongsTo(Image::class, 'image3', 'id');
+    }
+    /**
+     * リレーションの定義
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     *
+     */
+    public function imageFourth()
+    {
+        return $this->belongsTo(Image::class, 'image4', 'id');
+    }
 
     /**
      * リレーションの定義
