@@ -102,7 +102,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**
