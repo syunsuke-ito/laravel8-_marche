@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\ProductRequest;
 use Symfony\Component\VarDumper\Caster\RedisCaster;
+use Constant;
 
 /**
  * @copyright 2022 ito
@@ -214,10 +215,10 @@ class ProductController extends Controller
                         $product->is_selling = $request->is_selling;
                         $product->save();
 
-                    if($request->type === '1'){
+                    if($request->type === Constant::PRODUCT_LIST['add']){
                         $newQuantity = $request->quantity;
                     }
-                    if($request->type === '2'){
+                    if($request->type === Constant::PRODUCT_LIST['reduce']){
                         $newQuantity = $request->quantity * -1;
                     }
                     Stock::create([
