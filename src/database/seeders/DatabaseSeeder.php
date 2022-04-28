@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Product;
+use App\Models\Stock;
 
 /**
  * @copyright 2022 ito
@@ -35,5 +37,8 @@ class DatabaseSeeder extends Seeder
             // ProductSeeder::class,
             // StockSeeder::class
         ]);
+
+        Product::factory(100)->create();
+        Stock::factory(100)->create();
     }
 }
