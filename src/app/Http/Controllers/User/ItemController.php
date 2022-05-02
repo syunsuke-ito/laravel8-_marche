@@ -22,6 +22,15 @@ use Illuminate\Support\Facades\DB;
 class ItemController extends Controller
 {
     /**
+     * ProductController constructor.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:users');
+    }
+    /**
      * index表示.
      *
      * @return \Illuminate\View\View
@@ -52,4 +61,18 @@ class ItemController extends Controller
         // $products = Product::all();
         return view('user.index', compact('products'));
     }
+
+    /**
+     * 
+     *
+     * @param int $id
+     * @return \Illuminate\View\View
+     */
+    public function show($id)
+    {
+        $product = Product::findOrFail($id);
+
+        return view('user.show', compact('product'));
+    }
+
 }
