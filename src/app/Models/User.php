@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Models;
 
@@ -7,6 +9,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Product;
+
 
 class User extends Authenticatable
 {
@@ -41,4 +45,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * リレーションの定義
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     *
+     */
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'carts')
+            ->withPivot(['id', 'quantity']);
+    }
 }

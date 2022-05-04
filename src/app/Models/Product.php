@@ -10,6 +10,7 @@ use App\Models\Shop;
 use App\Models\SecondaryCategory;
 use App\Models\Image;
 use App\Models\Stock;
+use App\Models\User;
 
 /**
  * @copyright 2022 ito
@@ -108,5 +109,16 @@ class Product extends Model
     public function stock()
     {
         return $this->hasMany(Stock::class);
+    }
+
+    /**
+     * リレーションの定義
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     *
+     */
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'carts')
+        ->withPivot(['id', 'quantity']);
     }
 }
