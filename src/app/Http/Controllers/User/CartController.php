@@ -6,6 +6,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,6 +21,24 @@ use Illuminate\Support\Facades\Auth;
  */
 class CartController extends Controller
 {
+    /**
+     *
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function index()
+    {
+        $user = User::findOrFail(Auth::id());
+        $products = $user->products;
+        $totalPrice = 0;
+
+        foreach ($products as $product) {
+            $totalPrice += $product->price * $product->pivot->quantity;
+        }
+
+        return view('user.cart', compact('products', 'totalPrice'));
+    }
+
     /**
      *
      * @param \Illuminate\Http\Request $request
@@ -41,6 +60,6 @@ class CartController extends Controller
                 'quantity' => $request->quantity
             ]);
         }
-        return redirect()->route('user.items.index');
+        return redirect()->route('user.cart.index');
     }
 }

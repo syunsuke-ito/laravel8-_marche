@@ -7,6 +7,7 @@ use App\Http\Controllers\ComponentTestController;
 use App\Http\Controllers\LifeCycleTestController;
 use App\Http\Controllers\User\ItemController;
 use App\Http\Controllers\User\CartController;
+use App\Models\Cart;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,7 @@ Route::middleware('auth:users')->group(function () {
 
 Route::prefix('cart')
     ->middleware('auth:users')->group(function () {
+        Route::get('/', [CartController::class, 'index'])->name('cart.index');
         Route::post('add', [CartController::class, 'add'])->name('cart.add');
     });
 
